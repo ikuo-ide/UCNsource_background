@@ -1,0 +1,383 @@
+#define DLAY 
+#define FARM 
+DEFAULTS                                                              PRECISIO
+BEAM           -0.48                         -0.88      -2.5          PROTON
+BEAMPOS         100.       0.0       0.0   -.96126   0.27564
+USERWEIG                              1.
+USRBIN           10.   NEUTRON      -24.      100.      100.      110.nfast
+USRBIN         -100.     -100.      -30.      100.      100.       70. &
+USRBIN           10.   NEUTRON      -24.      100.      100.      110.n300K
+USRBIN         -100.     -100.      -30.      100.      100.       70. &
+USRBIN           10.   NEUTRON      -24.      100.      100.      110.n80K
+USRBIN         -100.     -100.      -30.      100.      100.       70. &
+USRBIN           10.   NEUTRON      -24.      100.      100.      110.ncold
+USRBIN         -100.     -100.      -30.      100.      100.       70. &
+USRBIN           10.    ENERGY      -24.      100.      100.      110.energydep
+USRBIN         -100.     -100.      -30.      100.      100.       70. &
+USRTRACK          1.   NEUTRON      -21.      HEII                200.HeIInflux
+USRTRACK     100E-12       0.0                                         &
+SCORE         ENERGY
+#if FARM 
+RANDOMIZ          1.    MYSEED
+START         10000.
+#else  
+RANDOMIZ          1.        8.
+START        250000.
+#endif  
+#if DLAY 
+RADDECAY          1.                  1.
+* Comment dt = 3600*24*365*8/12 = 8 months; 1 microAmp p/s
+IRRPROFI   21024000.  .6242E13
+* Comment t2) 1 day; t3) 1 week; t4) 4 weeks; t5) 8 weeks; t6) 1 yr.
+DCYTIMES         0.0    86400.   604800.  2419200.  4838400. 31536000.
+* Comment t1) 20 yrs
+DCYTIMES    6.3072E8
+DCYSCORE          1.                     DecayEDep DecayEDep          USRBIN
+USRBIN           12.    ENERGY      -22.  @LASTREG                    DecayEDep
+USRBIN       TgtShld                                                   &
+RESNUCLE          3.      -23.                      HEIIBOTT          HeBtleAct
+#endif  
+#include target.inp
+GEOBEGIN                                                              COMBNAME
+    0    0          
+RPP AlPlate3   -73. 73. -73. 78. 12.4 13.7
+RCC AlCutout   0.0 0.0 12.4 0.0 0.0 1.4 35.
+RPP ld2o       -48. 48. -53. 53. 14.8 107.8
+RPP ld2obott   -49. 49. -54. 54. 13.8 108.8
+RPP ld2osep    -48.4 48.4 -53.4 53.4 63. 65.
+RPP reflecto   -70. 70. -70. 75. 13.8 128.8
+RPP srcpit     -51. 51. -56. 56. 13.8 113.8
+RCC ld2bottl   0.0 4.15 61.89999999999999 0.0 -8.3 0.0 34.8
+RCC ld2        0.0 4.15 61.89999999999999 0.0 -8.3 0.0 33.8
+RCC ld2i       0.0 2.2 68.4 0.0 -4.4 0.0 24.6
+RCC ld2ibott   0.0 2.2 68.4 0.0 -4.4 0.0 24.
+RCC heiibott   0.0 1.3 68.4 0.0 -2.6 0.0 18.34
+RCC heii       0.0 1.3 68.4 0.0 -2.6 0.0 18.
+RCC d2oibott   0.0 5.9 61.89999999999999 0.0 -11.8 0.0 42.
+RCC ld2oi      0.0 5.9 61.89999999999999 0.0 -11.8 0.0 42.3
+SPH heiilow    0.0 1.3 68.4 18.
+SPH heiiup     0.0 -1.3 68.4 18.
+SPH hebottup   0.0 -1.3 68.4 18.2
+SPH hebottlo   0.0 1.3 68.4 18.2
+SPH ld2ibolo   0.0 2.2 68.4 24.
+SPH ld2ilow    0.0 2.2 68.4 24.3
+SPH ld2low     0.0 4.15 61.89999999999999 33.8
+SPH ld2botlo   0.0 4.15 61.89999999999999 34.1
+SPH ld2iboup   0.0 -2.2 68.4 24.
+SPH ld2iup     0.0 -2.2 68.4 24.3
+SPH ld2up      0.0 -4.15 61.89999999999999 33.8
+SPH ld2botup   0.0 -4.15 61.89999999999999 34.1
+SPH thshldli   0.0 3.75 61.89999999999999 36.7
+SPH thshldlo   0.0 3.75 61.89999999999999 36.86
+SPH vactnkli   0.0 6.05 61.89999999999999 40.
+SPH vactnklo   0.0 6.05 61.89999999999999 40.3
+SPH d2oibolo   0.0 5.9 61.89999999999999 42.
+SPH d2oilow    0.0 5.9 61.89999999999999 42.3
+SPH vacsepli   0.0 1.95 68.4 21.
+SPH vacseplo   0.0 1.95 68.4 21.2
+RCC vacsepi    0.0 1.95 68.4 0.0 -3.9 0.0 21.
+RCC vacsepo    0.0 1.95 68.4 0.0 -3.9 0.0 21.32
+SPH vacsepui   0.0 -1.95 68.4 21.
+SPH vacsepuo   0.0 -1.95 68.4 21.2
+RCC thshldi    0.0 3.75 61.89999999999999 0.0 -7.5 0.0 36.7
+RCC thshldo    0.0 3.75 61.89999999999999 0.0 -7.5 0.0 36.86
+SPH thshldui   0.0 -3.75 61.89999999999999 36.7
+SPH thshlduo   0.0 -3.75 61.89999999999999 36.86
+RCC vactnki    0.0 6.05 61.89999999999999 0.0 -12.1 0.0 40.
+RCC vactnko    0.0 6.05 61.89999999999999 0.0 -12.1 0.0 40.7
+SPH vactnkui   0.0 -6.05 61.89999999999999 40.
+SPH vactnkuo   0.0 -6.05 61.89999999999999 40.3
+SPH d2oiup     0.0 -5.9 61.89999999999999 42.3
+SPH d2oiboui   0.0 -5.9 61.89999999999999 42.
+RCC hguide     0.0 0.0 76.9 0.0 -200. 0.0 7.41
+RCC hguideo    0.0 0.0 76.9 0.0 -200. 0.0 7.66
+RCC hld2i      0.0 -10. 76.9 0.0 -100. 0.0 12.3
+RCC hld2ibot   0.0 -1.2 76.9 0.0 -41. 0.0 11.
+RCC ld2pipe    0.0 -10. 92.5 0.0 -200. 0.0 2.8
+RCC ld2pipei   0.0 -13.65 92.5 0.0 -200. 0.0 1.3
+RCC hvactnko   0.0 -16. 81.2 0.0 -201.2 0.0 15.8
+RCC hvactnki   0.0 -16. 81.2 0.0 -201.2 0.0 14.6
+RCC hvacsepo   0.0 -10. 76.9 0.0 -200. 0.0 9.5
+RCC hvacsepi   0.0 -10. 76.9 0.0 -200. 0.0 8.6
+RCC hd2obott   0.0 0.0 81.3 0.0 -55. 0.0 16.2
+RCC hd2oi      0.0 0.0 81.3 0.0 -54. 0.0 16.5
+RPP b4cshld1   -72.4 72.4 -72.4 77.4 13.8 131.2
+RCC b4cshld2   0.0 -70. 80.2 0.0 -150. 0.0 17.8
+RPP stshld     -200. 200. -500. 200. -100. 350.
+RPP pbshield   -73. 73. -73. 78. 13.7 13.8
+RPP det10      -5. 5. -7.5 7.5 49. 50.
+RPP det11      -5. 5. -7.5 7.5 87. 88.
+RCC LD2fill1   0.0 -20. 91. -14.5 0.0 -4. 0.635
+RCC LD2fill2   -14.5 -20. 87. -10.5 0.0 -10.5 0.635
+RCC LD2fill3   -25. -20. 76.5 -4. 0.0 -14.5 0.635
+RCC LD2fill4   -29. -20. 62. 3.8755186721993 0.0 -14.53319502075 0.635
+RCC LD2fill5   -25. -20. 47.5 10.5 0.0 -10.5 0.635
+RCC LD2fill6   -14.5 -20. 37. 14.5 0.0 -4. 0.635
+RCC LD2fill7   0.0 -20. 91. -14.5 0.0 -4. 0.47
+RCC LD2fill8   -14.5 -20. 87. -10.5 0.0 -10.5 0.47
+RCC LD2fill9   -25. -20. 76.5 -4. 0.0 -14.5 0.47
+RCC LD2fil10   -29. -20. 62. 3.8755186721993 0.0 -14.53319502075 0.47
+RCC LD2fil11   -25. -20. 47.5 10.5 0.0 -10.5 0.47
+RCC LD2fil12   -14.5 -20. 37. 14.5 0.0 -4. 0.47
+SPH blkhole    0.0 -150. 125. 500.
+END
+LD2OBOTT     5 +ld2obott -ld2o -d2oibott -hd2obott
+               | +d2oilow -d2oibolo -d2oibott -d2oiup
+               | +ld2oi -d2oibott -hvactnko
+               | +d2oiup -d2oiboui -d2oibott -hd2obott -d2oilow
+               | +hd2oi -hd2obott -d2oiboui
+               | +ld2osep -d2oilow -ld2oi -d2oiup
+               | +AlPlate3 -AlCutout
+LD2O         5 +ld2o -ld2oi -d2oilow -d2oiup -hd2oi -ld2osep
+REFLECTO     5 reflecto -srcpit -hvactnko -hd2oi
+LD2          5 +ld2 -ld2i -ld2ilow -ld2iup -hld2i
+               | +ld2low -ld2ilow -ld2i -ld2up
+               | +ld2up -ld2iup -ld2ibott -ld2ibolo -hld2i -ld2i -ld2ilow -LD2fill1 -LD2fill2 -LD2fill3 -LD2fill4
+               -LD2fill5 -LD2fill6
+               | +ld2pipei -CRYOSTAT -LD2fill1
+               | +LD2fill7
+               | +LD2fill8
+               | +LD2fill9
+               | +LD2fil10
+               | +LD2fil11
+               | +LD2fil12
+LD2BOTTL     5 +ld2bottl -ld2 -ld2ibott
+               | +ld2i -ld2ibott
+               | +ld2ilow -ld2ibolo -ld2ibott -ld2iboup
+               | +ld2botlo -ld2low -ld2 -ld2up
+               | +ld2iup -ld2iboup -ld2ibott -ld2ibolo -hld2ibot
+               | +ld2botup -ld2up -ld2 -ld2low -hld2ibot -ld2pipe
+               | +hld2i -hld2ibot +ld2botup -ld2iup
+               | +ld2pipe -ld2pipei -ld2up -CRYOSTAT
+HEIIBOTT     5 +heiibott -heii -heiilow -heiiup
+               | +hebottlo -heiilow -heii -heiiup
+               | +hebottup -heiiup -heii -heiilow -hguide
+               | +hguideo -hguide -heiiup -CRYOSTAT
+HEII         5 +heii
+               | +heiiup
+               | +heiilow
+               | +hguide -CRYOSTAT
+PIT          5 +srcpit -ld2obott -vactnko -hvactnko
+               | +d2oibott -vactnkuo -vactnklo -vactnko -hvactnko
+               | +d2oibolo -vactnklo -vactnko -d2oiboui
+               | +d2oiboui -vactnkuo -vactnko -hvactnko -d2oibolo
+               | +hd2obott -vactnko -vactnkuo -hvactnko
+               | +AlCutout
+HEIIISOV     5 +vacsepi -heiibott -hebottup -hebottlo -hguideo -det10 -det11
+               | +vacsepli -hebottlo -heiibott -hebottup -hguideo -det10 -det11
+               | +hvacsepi -hguideo -hebottup -CRYOSTAT
+               | +vacsepui -hebottup -hguideo -heiibott -hebottlo -det10 -det11
+ISOVAC       5 +vactnki -thshldo -thshldlo -thshlduo
+               | +vactnkli -thshldlo -thshldo -thshlduo
+               | +ld2ibott -vacsepo -hvacsepo -vacsepuo -vacseplo
+               | +ld2ibolo -vacseplo -vacsepo -hvacsepo -ld2iboup
+               | +thshldi -ld2bottl -vacsepo -hvacsepo -ld2botup -ld2botlo
+               | +thshldli -ld2botlo -ld2bottl -vacsepo -thshldui
+               | +hvactnki -hvacsepo -thshldo -thshlduo -thshldlo -ld2pipe -CRYOSTAT
+               | +hld2ibot -hvacsepo -vacsepuo -vacsepo
+               | +ld2iboup -vacsepuo -vacsepo -vacseplo -hvacsepo
+               | +thshldui -ld2botup -ld2bottl -hvacsepo -ld2pipe -ld2botlo
+               | +vactnkui -thshlduo -thshldlo -thshldo -hvacsepo -ld2pipe
+VACSEP       5 +vacsepo -vacsepi -vacsepli -hvacsepo
+               | +vacseplo -vacsepli -vacsepi -vacsepui
+               | +hvacsepo -hvacsepi -vacsepi -vacsepui -hguideo -CRYOSTAT
+               | +vacsepuo -vacsepui -vacsepi -vacsepli -hvacsepi
+THSHLD       5 +thshldo -thshldi
+               | +thshldlo -thshldli -thshldi -thshlduo
+               | +thshlduo -thshldui -thshldi -hld2ibot -ld2pipe -thshldlo
+VACTNK       5 +vactnko -vactnki -hvactnko
+               | +vactnklo -vactnkli -vactnki -vactnkuo
+               | +hvactnko -hvactnki -vactnkui -CRYOSTAT
+               | +vactnkuo -vactnkui -hvactnki -vactnko -vactnklo
+STSHIELD     5 +stshld -TARGET -b4cshld1 -b4cshld2 -hvactnko -CRYOSTAT -pbshield -AlPlate3
+B4CSHLD      5 +b4cshld1 -hvactnko -reflecto
+               | +b4cshld2 -hvactnko -CRYOSTAT
+PBSHIELD     5 +pbshield -AlCutout
+DET10        5 +det10
+DET11        5 +det11
+LD2fill1     5 +LD2fill1 -LD2fill7 -LD2fill8
+LD2fill2     5 +LD2fill2 -LD2fill8 -LD2fill1 -LD2fill9
+LD2fill3     5 +LD2fill3 -LD2fill9 -LD2fill2 -LD2fil10
+LD2fill4     5 +LD2fill4 -LD2fil10 -LD2fill3 -LD2fil11
+LD2fill5     5 +LD2fill5 -LD2fil11 -LD2fill4 -LD2fil12
+LD2fill6     5 +LD2fill6 -LD2fil12 -LD2fill5
+BLKHOLE      5 blkhole -stshld
+END
+GEOEND
+ROT-DEFI                                       0.0     -390.      76.9crtrafo
+#include cryostat.inp
+MATERIAL         19.               0.862                              POTASSIU
+MATERIAL         16.                  2.                              SULFUR
+MATERIAL         25.                7.44                              MANGANES
+MATERIAL         24.                7.18                              CHROMIUM
+MATERIAL         15.                1.82                              PHOSPHO
+MATERIAL          5.                2.37                              BORON
+MATERIAL          2.           0.1786E-3                              HELIUM
+MATERIAL         17.            .0029947                              CHLORINE
+MATERIAL         55.               1.873                              CESIUM
+MATERIAL         27.                 8.9                              COBALT
+MATERIAL         63.               5.243                              EUROPIUM
+MATERIAL                            2.30                              CONCRETE
+COMPOUND     .304245  HYDROGEN    .00287    CARBON   .498628    OXYGENCONCRETE
+COMPOUND     .009179    SODIUM   7.17E-4  MAGNESIU   .010261  ALUMINUMCONCRETE
+COMPOUND    0.150505   SILICON   .007114  POTASSIU   .014882   CALCIUMCONCRETE
+COMPOUND     .001599      IRON                                        CONCRETE
+MATERIAL                              4.                              HEMACONC
+COMPOUND      -62.13      IRON     -1.76   SILICON     -0.58  ALUMINUMHEMACONC
+COMPOUND       -5.54   CALCIUM     -0.49  MAGNESIU     -0.03    SODIUMHEMACONC
+COMPOUND       -0.07  POTASSIU     -0.15    SULFUR     -0.04  MANGANESHEMACONC
+COMPOUND        -0.6    CARBON     -0.39  HYDROGEN    -28.16    OXYGENHEMACONC
+MATERIAL         74.               19.25                              TUNGSTEN
+MATERIAL                             1.7                              GRAPHITE
+COMPOUND          1.    CARBON     3.E-8   LITHIUM     3.E-6     BORONGRAPHITE
+COMPOUND       5.E-7    SODIUM     2.E-7  MAGNESIU   1.4E-05  ALUMINUMGRAPHITE
+COMPOUND       2.E-6   SILICON     2.E-6  POTASSIU     6.E-6   CALCIUMGRAPHITE
+COMPOUND      3.3E-5  TITANIUM     4.E-5  VANADIUM     3.E-7  CHROMIUMGRAPHITE
+COMPOUND       2.E-7  MANGANES    2.6E-5      IRON     3.E-7    COBALTGRAPHITE
+COMPOUND       4.E-6    NICKEL     1.E-6    COPPER     6.E-7      ZINCGRAPHITE
+COMPOUND       1.E-6      LEAD                                        GRAPHITE
+MATERIAL          1.               .0708                              DEU300
+MATERIAL          1.               .0708                              DEU87
+MATERIAL          8.           0.0013315                              OXY300
+MATERIAL          8.           0.0013315                              OXY87
+MATERIAL          1.                 .16                            2.D2_16K
+MATERIAL                          1.1029                              D2O300K
+COMPOUND          2.    DEU300        1.    OXY300                    D2O300K
+MATERIAL                          1.1029                              D2O16K
+COMPOUND          2.     DEU87        1.     OXY87                    D2O16K
+MATERIAL          2.                .145                            4.HELIUM1K
+MATERIAL          4.               1.232                            9.BERYL77K
+MATERIAL         13.              2.6989                           27.Al20KHI
+MATERIAL         13.             1.16934                           27.Al20KLO
+MATERIAL                             2.2                              BORACONC
+COMPOUND    .0072981   SILICON   .021773  HYDROGEN  .0095656  MAGNESIUBORACONC
+COMPOUND    1.681E-5  MANGANES  4.002E-4  ALUMINUM  .0010337      IRONBORACONC
+COMPOUND    .0025985   CALCIUM 6.2878E-5    SULFUR  5.979E-6  CHLORINEBORACONC
+COMPOUND    9.969E-7    CESIUM  2.138E-5    SODIUM 1.6878E-5  POTASSIUBORACONC
+COMPOUND   1.1612E-5  TITANIUM  9.934E-4     BORON  2.053E-5   PHOSPHOBORACONC
+COMPOUND    8.718E-7  EUROPIUM  1.768E-6    COBALT   .042266    OXYGENBORACONC
+MATERIAL                            1.01                              BORAPOLY
+COMPOUND      .32591    CARBON    .65182  HYDROGEN    .02226     BORONBORAPOLY
+MATERIAL                       .00120484                              AIR
+COMPOUND   -1.248E-4    CARBON  -.755267  NITROGEN  -.231781    OXYGENAIR
+COMPOUND   -0.012827     ARGON                                        AIR
+MATERIAL                             7.8                              SS316LN
+COMPOUND    -0.64145      IRON    -0.185  CHROMIUM   -0.1125    NICKELSS316LN
+COMPOUND       -0.02  MANGANES     -0.01   SILICON   -4.5E-4   PHOSPHOSS316LN
+COMPOUND      -3.E-4    SULFUR    -3.E-4    CARBON     -0.03  MOLYBDENSS316LN
+MATERIAL         26.                 6.8                              IRONLITE
+MATERIAL         26.                 6.8                              ILITEMAG
+MATERIAL                              8.                              Stainles
+COMPOUND        -18.  CHROMIUM  -71.4196      IRON       -8.    NICKELStainles
+COMPOUND       -1.32  MANGANES       -1.   SILICON     -.045   PHOSPHOStainles
+COMPOUND        -.03    SULFUR      -.08    CARBON    -.0954    COBALTStainles
+COMPOUND     -3.6E-4  ANTIMONY   -.00217   ARSENIC    -.0075   NIOBIUMStainles
+MATERIAL         48.                8.65                              CADMIUM
+MATERIAL         30.               7.133                              ZINC
+MATERIAL                            1.42                              SOIL
+COMPOUND  -5.1433333  ALUMINUM -2.694E-4   CADMIUM-3.9844444   CALCIUMSOIL
+COMPOUND  -8.2288889    CARBON -.0013969    COBALT -.0011412    COPPERSOIL
+COMPOUND  -2.6655556      IRON-1.2464444  MAGNESIU   -0.0508  MANGANESSOIL
+COMPOUND   -.0037542    NICKEL -.3155556  NITROGEN -.0326778   PHOSPHOSOIL
+COMPOUND  -2.1844444  POTASSIU -.6000667    SODIUM   -0.0048      ZINCSOIL
+MATERIAL                            7.36                              ENESOLUT
+COMPOUND    -89.1483      IRON   -0.8036  MANGANES -0.348575   SILICONENESOLUT
+COMPOUND   -0.322275    CARBON   -3.2716    NICKEL -0.993775    COPPERENESOLUT
+COMPOUND    -0.24855  ALUMINUM  -4.52482  CHROMIUM -0.015425   PHOSPHOENESOLUT
+COMPOUND     -0.0195    SULFUR -0.157175  MOLYBDEN   -0.0566    COBALTENESOLUT
+COMPOUND    -0.01065  TITANIUM -0.021075  VANADIUM -0.026875      LEADENESOLUT
+COMPOUND     -0.0124       TIN -0.001075     BORON -0.017875   NIOBIUMENESOLUT
+MATERIAL         42.               10.22                              MOLYBDEN
+MATERIAL         23.                6.11                              VANADIUM
+MATERIAL         41.                8.57                              NIOBIUM
+MATERIAL                             1.5                              ELASTOM
+COMPOUND          5.    CARBON        8.  HYDROGEN                    ELASTOM
+MATERIAL                             7.8                              A36STEEL
+COMPOUND         -.4    CARBON       -.2    COPPER      -98.      IRONA36STEEL
+COMPOUND       -1.03  MANGANES      -.04   PHOSPHO      -.28   SILICONA36STEEL
+COMPOUND        -.05    SULFUR                                        A36STEEL
+MATERIAL                           7.107                              INGOT
+COMPOUND        -.95  ENESOLUT      -.05  CONCRETE                    INGOT
+MATERIAL                            2.52                              B4C
+COMPOUND          4.     BORON        1.    CARBON                    B4C
+MATERIAL                           11.35                              NEWPB
+COMPOUND    -99.9915      LEAD    -8.E-4    SILVER    -0.001    COPPERNEWPB
+COMPOUND       -.004   BISMUTH    -5.E-4   ARSENIC    -8.E-4  ANTIMONYNEWPB
+COMPOUND      -5.E-4       TIN    -4.E-4      ZINC    -5.E-4      IRONNEWPB
+MATERIAL         83.               9.747                              BISMUTH
+MATERIAL         33.                5.73                              ARSENIC
+MATERIAL         51.               6.691                              ANTIMONY
+MATERIAL          3.                .534                              LITHIUM
+MATERIAL                              1.                              WATER
+COMPOUND          2.  HYDROGEN        1.    OXYGEN                    WATER
+MATERIAL          2.                .082                            3.He3_1K
+LOW-MAT     IRONLITE       26.       -2.      296.                    IRON
+LOW-MAT     ILITEMAG       26.       -2.      296.                    IRON
+LOW-MAT     BERYL77K        4.        9.       87.                    BERYLLIU
+LOW-MAT       CARBON        6.       -3.      296.                    CARBON
+LOW-MAT       D2_16K        1.        2.       87.                    DEUTERIU
+LOW-MAT       DEU300        1.        2.      296.                    DEUTERIU
+LOW-MAT       OXY300        8.       16.      296.                    OXYGEN
+LOW-MAT        DEU87        1.        2.       87.                    DEUTERIU
+LOW-MAT        OXY87        8.       16.       87.                    OXYGEN
+LOW-MAT     HELIUM1K        2.        4.        4.                    HELIUM-4
+LOW-MAT      Al20KHI       13.       27.        4.                    ALUMINUM
+LOW-MAT      Al20KLO       13.       27.        4.                    ALUMINUM
+ASSIGNMA    ALUMINUM  LD2OBOTT
+ASSIGNMA     D2O300K      LD2O
+ASSIGNMA    GRAPHITE  REFLECTO
+ASSIGNMA      D2_16K       LD2
+ASSIGNMA     Al20KHI  LD2BOTTL
+ASSIGNMA     Al20KHI  HEIIBOTT
+ASSIGNMA    HELIUM1K      HEII
+ASSIGNMA         AIR       PIT
+ASSIGNMA      VACUUM  HEIIISOV
+ASSIGNMA      VACUUM    ISOVAC
+ASSIGNMA       NEWPB   TgtShld
+ASSIGNMA         AIR    TgtGap
+ASSIGNMA    ALUMINUM   TgtSpcr
+ASSIGNMA    ALUMINUM   TgtVssl
+ASSIGNMA    Stainles   TgtCase
+ASSIGNMA      HELIUM  TgtCrypt
+ASSIGNMA    TUNGSTEN    Target
+ASSIGNMA    TANTALUM   TgtCoat
+ASSIGNMA       WATER  TgtWater
+ASSIGNMA    A36STEEL    TgtArm
+ASSIGNMA       NEWPB  TgtArmPb
+ASSIGNMA      VACUUM    TgtVac
+ASSIGNMA    BLCKHOLE   BLKHOLE
+ASSIGNMA     Al20KHI    VACSEP
+ASSIGNMA     Al20KHI    THSHLD
+ASSIGNMA    ALUMINUM    VACTNK
+ASSIGNMA    ALUMINUM  CRVACTNK
+ASSIGNMA    HELIUM1K    CRHEII
+ASSIGNMA    Stainles   CRSTEEL
+ASSIGNMA      VACUUM   CRYOVAC
+ASSIGNMA    ALUMINUM      CRAL
+ASSIGNMA         AIR  CRYOSTAT
+ASSIGNMA      COPPER     CRHEX
+ASSIGNMA      He3_1K     CRHE3
+ASSIGNMA      VACUUM   CRGDVAC
+ASSIGNMA    Stainles   CRGUIDE
+ASSIGNMA    ENESOLUT  STSHIELD
+ASSIGNMA         B4C   B4CSHLD
+ASSIGNMA    ALUMINUM  PBSHIELD
+ASSIGNMA    ALUMINUM   TgtWndw
+ASSIGNMA         AIR      DET1
+ASSIGNMA         AIR      DET5
+ASSIGNMA         AIR      DET4
+ASSIGNMA         AIR      DET3
+ASSIGNMA      VACUUM      DET2
+ASSIGNMA         AIR      DET6
+ASSIGNMA         AIR      DET7
+ASSIGNMA         AIR      DET8
+ASSIGNMA         AIR      DET9
+ASSIGNMA      VACUUM     DET11
+ASSIGNMA      VACUUM     DET10
+ASSIGNMA     Al20KHI  LD2fill1
+ASSIGNMA     Al20KHI  LD2fill2
+ASSIGNMA     Al20KHI  LD2fill3
+ASSIGNMA     Al20KHI  LD2fill4
+ASSIGNMA     Al20KHI  LD2fill5
+ASSIGNMA     Al20KHI  LD2fill6
+STOP
